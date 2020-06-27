@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <template id="cpn">
+        <div>
+            <!-- <slot name="first"></slot> -->
+            你好
+            <slot :data="arr"></slot>
+        </div>
+    </template>
+
+    <div id="app">
+        <button>nihai</button>
+        <cpn>
+            <template slot-scope="slot">
+            <span v-for="item in slot.data">{{item}} -</span>
+            </template>
+        </cpn>
+
+
+        <!-- <router-view></router-view> -->
+
+
+    </div>
+
+    <script>
+        let b = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                jump() {
+                    $router.go({
+                        name: 'HelloWorld'
+                    });
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            arr: ["1", "20", "3"]
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
